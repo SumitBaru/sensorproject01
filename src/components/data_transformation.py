@@ -38,7 +38,7 @@ class DataTransformation:
         try:
             data = pd.read_csv(feature_store_file_path)
 
-            data.rename(column={"Good/Bad": TARGET_COLUMN}, inplace = True)
+            data.rename(columns={"Good/Bad": TARGET_COLUMN}, inplace = True)
 
             return data
         except Exception as e:
@@ -83,8 +83,8 @@ class DataTransformation:
 
             self.utils.save_object(file_path=preprocessor_path, obj=preprocessor)
 
-            train_arr = np.c[x_train_scaled, np.array(y_train)]
-            test_arr = np.c[x_test_scaled, np.array(y_test)]
+            train_arr = np.c_[x_train_scaled, np.array(y_train)]
+            test_arr = np.c_[x_test_scaled, np.array(y_test)]
 
             return(train_arr,test_arr,preprocessor_path)
         except Exception as e:
